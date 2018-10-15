@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- 使用自定义组件 -->
+    <div id="app">
+        <runoob></runoob>
+    </div>
+
+    <script>
+        // 注册
+        Vue.component('runoob', {
+            template: '<h1>自定义组件!</h1>'
+        })
+        // 创建根实例
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <!-- 注册局部组件 -->
+    <div id="app2">
+        <runoob2></runoob2>
+    </div>
+
+    <script>
+        var Child = {
+            template: '<h1>自定义组件2!</h1>'
+        }
+
+        // 创建根实例
+        new Vue({
+            el: '#app2',
+            components: {
+                // <runoob> 将只在父模板可用
+                'runoob2': Child
+            }
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <h4>Prop</h4>
+    <div id="app3">
+        <child message="hello!"></child>
+    </div>
+
+    <script>
+        // 注册
+        Vue.component('child', {
+            // 声明 props
+            props: ['message'],
+            // 同样也可以在 vm 实例中像 "this.message" 这样使用
+            template: '<span>{{ message }}</span>'
+        })
+        // 创建根实例
+        new Vue({
+            el: '#app3'
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <div id="app4">
+        <div>
+            <input v-model="parentMsg">
+            <br>
+            <child2 v-bind:message="parentMsg"></child2>
+        </div>
+    </div>
+
+    <script>
+        // 注册
+        Vue.component('child2', {
+            // 声明 props
+            props: ['message'],
+            // 同样也可以在 vm 实例中像 "this.message" 这样使用
+            template: '<span>{{ message }}</span>'
+        })
+        // 创建根实例
+        new Vue({
+            el: '#app4',
+            data: {
+                parentMsg: '父组件内容'
+            }
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <div id="app5">
+        <ol>
+            <todo-item v-for="item in sites" v-bind:todo="item"></todo-item>
+        </ol>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        })
+        new Vue({
+            el: '#app5',
+            data: {
+                sites: [
+                    { text: 'Runoob' },
+                    { text: 'Google' },
+                    { text: 'Taobao' }
+                ]
+            }
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <!-- 使用 $emit(eventName) 触发事件 -->
+    <!-- 使用 $on(eventName) 监听事件 -->
+    <div id="app">
+        <div id="counter-event-example">
+            <p>{{ total }}</p>
+            <button-counter v-on:increment="incrementTotal"></button-counter>
+            <button-counter v-on:increment="incrementTotal"></button-counter>
+        </div>
+    </div>
+
+    <script>
+        Vue.component('button-counter', {
+            template: '<button v-on:click="incrementHandler">{{ counter }}</button>',
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                incrementHandler: function () {
+                    this.counter += 1
+                    this.$emit('increment')
+                }
+            },
+        })
+        new Vue({
+            el: '#counter-event-example',
+            data: {
+                total: 0
+            },
+            methods: {
+                incrementTotal: function () {
+                    this.total += 1
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

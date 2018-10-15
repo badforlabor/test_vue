@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p> 使用vue提供的特殊指令：v-html</p>
+        <div v-html="message"></div>
+        <div v-html="nest_message"></div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: '<h1>菜鸟教程</h1>',
+                nest_message: '行尾内容是无效的！<div v-html="nest-message"></div>'
+            }
+        })
+    </script>
+</body>
+
+<body><br><br><br><br></body>
+
+<body>
+    <div id="app2">
+        {{5+5}}<br>
+        {{ ok ? 'YES' : 'NO' }}<br>
+        {{ message.split('').reverse().join('') }}
+        <div v-bind:id="'list-' + id">菜鸟教程</div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app2',
+            data: {
+                ok: true,
+                message: 'RUNOOB',
+                id: 1
+            }
+        })
+    </script>
+</body>
+
+<body><br><br><br><br></body>
+
+<body>
+    <div id="app3">
+        <p v-if="seen">现在你看到我了</p>
+    </div>
+
+    <script>
+        var v3 = new Vue({
+            el: '#app3',
+            data: {
+                seen: true
+            }
+        })
+
+        window.setTimeout(() => {
+            v3.seen = false
+        }, 2000)
+    </script>
+</body>
+
+<body><br><br><br><br></body>
+
+<body>
+    <div id="app4">
+        <a v-bind:href="url">菜鸟教程</a><br>
+        <a v-bind:href1="url">菜鸟教程1</a><br>
+        <a :href="url">菜鸟教程-简写</a><br>
+    </div>
+
+    <script>
+        // v-bind指令的意思的“绑定”，目的是，将属性绑定到元素上。比如<a v-bind:href...>，将href的属性绑定到a（超链接）上
+        // 可以简写成 ":"
+
+        new Vue({
+            el: '#app4',
+            data: {
+                url: '../junior2/index.html'
+            }
+        })
+    </script>
+</body>
+
+<body><br><br><br><br></body>
+
+<body>
+    <div id="app5">
+        <a v-on:click="onclick">点我,点我！</a><br>
+        <a @click="onclick">我是简写形式。点我,点我！</a><br>
+    </div>
+
+    <script>
+        // v-bind指令的意思的“绑定”，目的是，将属性绑定到元素上。比如<a v-bind:href...>，将href的属性绑定到a（超链接）上
+
+
+        new Vue({
+            el: '#app5',
+            data: {
+                url: '../junior2/index.html'
+            },
+            methods: {
+                onclick: function () {
+                    console.log('点击我了')
+                }
+            }
+        })
+    </script>
+</body>
+
+<body><br><br><br><br></body>
+
+<body>
+    <div id="app6">
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app6',
+            data: {
+                message: 'v-model双向同步'
+            }
+        })
+    </script>
+</body>
+
+<body>
+    <div id="app7">
+        {{ message | capitalize }}
+    </div>
+
+    <script>
+        // 过滤器，用|分割。“|”后面其实是一个函数，用来处理|前面内容的。比如message | capitalize，会调用capitalize处理message，然后返回一个string
+        // 当然，可以使用多个|将过滤器串联起来。比如 {{ message | filterA | filterB }}
+        // 也可以这样使用：{{ message | filterA('arg1', arg2) }}
+
+        new Vue({
+            el: '#app7',
+            data: {
+                message: 'runoob'
+            },
+            filters: {
+                capitalize: function (value) {
+                    if (!value) return ''
+                    value = value.toString()
+                    return value.charAt(0).toUpperCase() + value.slice(1)
+                }
+            }
+        })
+    </script>
+</body>
+
+
+
+
+</html>

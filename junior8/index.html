@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+
+        .notactive {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+
+        .text-danger {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 修改样式。可以直接写表达式 -->
+    <div id="app">
+        <div v-bind:class="{ active: isActive }"></div>
+        <div class="notactive"></div>
+    </div>
+
+    <script>
+        vm = new Vue({
+            el: '#app',
+            data: {
+                isActive: true
+            }
+        })
+        window.setInterval(() => {
+            vm.isActive = !vm.isActive
+        }, 1000)
+    </script>
+</body>
+
+<br>
+
+<body>
+    <div id="app2">
+        <!-- 修改样式。也可以更改样式 -->
+        <div v-bind:class="classObject"></div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app2',
+            data: {
+                isActive: true,
+                error: null
+            },
+            computed: {
+                classObject: function () {
+                    return {
+                        active: this.isActive && !this.error,
+                        'text-danger': this.error && this.error.type === 'fatal',
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <!-- 直接设置样式 -->
+    <div id="app3">
+        <div v-bind:style="[baseStyles, overridingStyles]">菜鸟教程</div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app3',
+            data: {
+                baseStyles: {
+                    color: 'green',
+                    fontSize: '30px'
+                },
+                overridingStyles: {
+                    'font-weight': 'bold'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

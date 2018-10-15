@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- vue支持 if if..else if..elseif... -->
+    <div id="app">
+        <div v-if="type === 'A'">
+            A
+        </div>
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else-if="type === 'C'">
+            C
+        </div>
+        <div v-else>
+            Not A/B/C
+        </div>
+        <button @click="onclick">修改</button><br>
+        <h1 v-show="ok">Hello!</h1>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                type: 'C',
+                ok: false
+            },
+            methods: {
+                onclick: function () {
+                    var v = Math.random() * 4
+                    if (v > 3) {
+                        this.type = 'A'
+                    } else if (v > 2) {
+                        this.type = 'B'
+                    } else if (v > 1) {
+                        this.type = 'C'
+                    } else {
+                        this.type = 'D'
+                    }
+                    this.ok = v > 2
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

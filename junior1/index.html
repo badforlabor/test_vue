@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <p>{{ message }}</p>
+    </div>
+
+    <script>
+        /*
+            el 意思是元素，会自动找同名的div元素
+            data，是数据，与div中的{{xxx}}一一对应
+        */
+        new Vue({
+            el: '#app1',
+            data: {
+                message: 'Hello Vue.js!'
+            }
+        })
+    </script>
+</body>
+
+</html>

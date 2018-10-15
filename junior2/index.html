@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="vue_det">
+        <h1>site : {{site}}</h1>
+        <h1>2秒之后会变化 => url : {{url}}</h1>
+        <h1>{{details()}}</h1>
+    </div>
+    <script type="text/javascript">
+
+        // 也支持函数，比如details()
+        var vm = new Vue({
+            el: '#vue_det',
+            data: {
+                site: "菜鸟教程",
+                url: "www.runoob.com",
+                alexa: "10000"
+            },
+            methods: {
+                details: function () {
+                    return this.site + " - 学的不仅是技术，更是梦想！";
+                }
+            }
+        })
+
+        // 2秒之后，更换一下数据，vue会自动刷新网页
+        window.setTimeout(() => {
+            vm.url = "网址被修改了"
+            console.log("调用vm方法：", vm.details())
+            console.log("vm.site", vm.site, vm.$data, vm.$data.site)
+        }, 2000)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <!-- vue支持for。这里的语句相当于代码的 for(site in sites) -->
+            <li v-for="site in sites">
+                {{ site.name }}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                sites: [
+                    { name: 'Runoob' },
+                    { name: 'Google' },
+                    { name: 'Taobao' }
+                ]
+            }
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <div id="app2">
+        <ul>
+            <li v-for="value in obj1">
+                {{ value }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app2',
+            data: {
+                obj1: {
+                    name: '菜鸟教程',
+                    url: 'http://www.runoob.com',
+                    slogan: '学的不仅是技术，更是梦想！'
+                }
+            }
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <div id="app3">
+        <ul>
+            <li v-for="(value, key, index) in obj1">
+                {{ index }}. {{ key }} : {{ value }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#app3',
+            data: {
+                obj1: {
+                    name: '菜鸟教程',
+                    url: 'http://www.runoob.com',
+                    slogan: '学的不仅是技术，更是梦想！'
+                }
+            }
+        })
+    </script>
+</body>
+
+<br>
+
+<body>
+    <div id="app4">
+        <ul>
+            <li v-for="n in 10">
+                {{ n }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#app4'
+        })
+    </script>
+</body>
+
+</html>
