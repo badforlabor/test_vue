@@ -1,0 +1,5 @@
+npm run serve
+
+npm run build
+
+vue create proj_name
