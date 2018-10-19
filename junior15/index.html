@@ -67,7 +67,7 @@
             methods: {
                 get: function () {
                     //发送get请求
-                    this.$http.get('/try/ajax/ajax_info.txt').then(function (res) {
+                    this.$http.get('http://127.0.0.1:2888/ajax/hello').then(function (res) {
                         //document.write(res.body);
                         this.ajax_result = res.body
                     }, function (res) {
@@ -113,6 +113,44 @@
                 }
             });
         }
+    </script>
+</body>
+
+<br>
+
+<h1>定时请求随机数</h1>
+
+<body>
+    <div id="box3">
+        <label>{{msg}} {{ajax_result}}</label>
+        <br>
+        <br>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#box3',
+            data: {
+                msg: 'Random result:',
+                ajax_result: ""
+            },
+            methods: {
+                get: function () {
+                    //发送get请求
+                    this.$http.post('http://127.0.0.1:2888/ajax/randvalue').then(function (res) {
+                        //document.write(res.body);
+                        this.ajax_result = res.body
+                    }, function (res) {
+                        console.log('请求失败：', res)
+                        this.ajax_result = res.status
+                    });
+                }
+            },
+            mounted() {
+                window.setInterval(() => {
+                    this.get()
+                }, 2000)
+            }
+        });
     </script>
 </body>
 
