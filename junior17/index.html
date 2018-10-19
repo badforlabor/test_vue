@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="../lib/vue/2.2.2/vue.min.js"></script>
+    <script src="../lib/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="../lib/vue-router.js"></script>
+    <style>
+        body {
+            font-family: Helvetica Neue, Arial, sans-serif;
+            font-size: 14px;
+            color: #444;
+        }
+
+        table {
+            border: 2px solid #42b983;
+            border-radius: 3px;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #42b983;
+            color: rgba(255, 255, 255, 0.66);
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        th,
+        td {
+            min-width: 120px;
+            padding: 10px 20px;
+        }
+
+        th.active {
+            color: #fff;
+        }
+
+        th.active .arrow {
+            opacity: 1;
+        }
+
+        .arrow {
+            display: inline-block;
+            vertical-align: middle;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            opacity: 0.66;
+        }
+
+        .arrow.asc {
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid #fff;
+        }
+
+        .arrow.dsc {
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #fff;
+        }
+    </style>
+</head>
+
+<h1>路由功能</h1>
+
+<body>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <!-- 使用 router-link 组件来导航. -->
+            <!-- 通过传入 `to` 属性指定链接. -->
+            <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+            <router-link to="/foo">Go to Foo</router-link>
+            <router-link to="/bar">Go to Bar</router-link>
+        </p>
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        // 0. 如果使用模块化机制编程，导入 Vue 和 VueRouter，要调用 Vue.use(VueRouter)
+
+        // 1. 定义（路由）组件。
+        // 可以从其他文件 import 进来
+        const Foo = { template: '<div>foo</div>' }
+        const Bar = { template: '<div>bar</div>' }
+
+        // 2. 定义路由
+        // 每个路由应该映射一个组件。 其中"component" 可以是
+        // 通过 Vue.extend() 创建的组件构造器，
+        // 或者，只是一个组件配置对象。
+        // 我们晚点再讨论嵌套路由。
+        const routes = [
+            { path: '/foo', component: Foo },
+            { path: '/bar', component: Bar }
+        ]
+
+        // 3. 创建 router 实例，然后传 `routes` 配置
+        // 你还可以传别的配置参数, 不过先这么简单着吧。
+        const router = new VueRouter({
+            routes // （缩写）相当于 routes: routes
+        })
+
+        // 4. 创建和挂载根实例。
+        // 记得要通过 router 配置参数注入路由，
+        // 从而让整个应用都有路由功能
+        const app = new Vue({
+            router
+        }).$mount('#app')
+
+        // 现在，应用已经启动了！
+    </script>
+</body>
+
+<br>
+
+<body>
+    <div id="app1">
+        <style>
+            ._active {
+                background-color: red;
+            }
+        </style>
+        <p>
+            <router-link v-bind:to="{ path: '/route1'}" active-class="_active">Router Link 1</router-link>
+            <router-link v-bind:to="{ path: '/route2'}" tag="span">Router Link 2</router-link>
+        </p>
+    </div>
+    <script>
+        var demo = new Vue({
+            el: "#app1",
+        })
+    </script>
+</body>
+
+
+</html>
